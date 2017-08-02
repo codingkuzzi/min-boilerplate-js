@@ -6,4 +6,5 @@ var passedUIFunction = function(currencyData) {
   $('.results').text("A US dollar equals " + currencyData + " Euros");
 };
 
+
 module.exports = passedUIFunction;

@@ -22,6 +22,8 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var buildProduction = utilities.env.production;
 
+
+//tested ok
 gulp.task('jsBrowserify', ['concatInterface'], function() {
   return browserify({ entries: ['./tmp/allConcat.js'] })
     .bundle()
@@ -36,11 +38,13 @@ gulp.task('concatInterface', function() {
     .pipe(gulp.dest('./tmp'));
 });
 
+// tested ok
 gulp.task("minifyScripts", ["jsBrowserify"], function(){
   return gulp.src("./build/js/app.js")
     .pipe(uglify())
     .pipe(gulp.dest("./build/js"));
 });
+
 
 gulp.task("build", ['clean'], function(){
   if (buildProduction) {
@@ -67,6 +71,7 @@ gulp.task('jshint', function(){
 //   gulp.watch(['js/*.js'], ['build']);
 // });
 
+// tested ok
 gulp.task('bowerJS', function () {
   return gulp.src(lib.ext('js').files)
     .pipe(concat('vendor.min.js'))
@@ -74,19 +79,22 @@ gulp.task('bowerJS', function () {
     .pipe(gulp.dest('./build/js'));
 });
 
+// tested ok
 gulp.task('bowerCSS', function () {
   return gulp.src(lib.ext('css').files)
     .pipe(concat('vendor.css'))
     .pipe(gulp.dest('./build/css'));
 });
 
+// tested ok
 gulp.task('bower', ['bowerJS', 'bowerCSS']);
 
 gulp.task('serve', ['jsBuild'],  function() {
   browserSync.init({
     server: {
       baseDir: "./",
-      index: "index.html"
+      index: "index.html",
+      cors: true
     }
   });
 
@@ -109,6 +117,7 @@ gulp.task('htmlBuild', function() {
   browserSync.reload();
 });
 
+// tested ok
 gulp.task('cssBuild', function() {
   return gulp.src(['scss/*.scss'])
     .pipe(sourcemaps.init())

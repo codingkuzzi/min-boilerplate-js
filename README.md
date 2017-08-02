@@ -15,4 +15,7 @@ Prerequisites:
 8. Copy the devDependencies section of a previous projects package.json [example] (https://raw.githubusercontent.com/Epicodus-SZ/js-calculator/master/package.json) and paste them into the new projects package.json file.
 9. Run `npm install` - to install all of those dependencies into your new project.
 10. Copy the dependencies section from a previous bower.json file [example](https://raw.githubusercontent.com/Epicodus-SZ/js-calculator/master/bower.json), and paste them into your new projects bower.json file.
-11.
+11.  To get API key to use in this app, register at the website.
+12.  Create .env file in the root/top level of the project.
+13.  Add .env file in the .gitignore file.
+14.  May need to install "Allow-Control-Allow-Origin:" extension to Chrome to have the API key to work.

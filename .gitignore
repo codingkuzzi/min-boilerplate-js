@@ -60,3 +60,4 @@ typings/
 # added by Steve Zaske
 .DS_Store
 tmp/*
+.env
