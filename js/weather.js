@@ -6,13 +6,13 @@ function Weather() {
 
 
 
-Weather.prototype.getWeather = function(passedWeatherFunction){
+Weather.prototype.getWeather = function(passedWeatherFunction, city){
 
-  $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=Seattle&appid=' + weatherApiKey)
+  $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + weatherApiKey)
 
     .then(function(apiResponse){
       console.log(apiResponse);
-      passedWeatherFunction(apiResponse.coord.lon, apiResponse.coord.lat,apiResponse.main.temp );
+      passedWeatherFunction(apiResponse.main.humidity);
     });
 };
 

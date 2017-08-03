@@ -11,5 +11,10 @@ $(document).ready(function() {
   console.log("we got here");
   var weather = new Weather();
   weather.getWeather(passedWeatherFunction);
+  $('#weather-location').click(function() {
+    var city = $('#location').val();
+    $('#location').val("");
+    $('.showWeather').text("The city you have chosen is " + city + ".");
+  });
 
 });
