@@ -4,7 +4,7 @@ var Nasa = require('../js/nasa.js');
 
 var passedNasaFunction = function(nasaData1, nasaData2) {
   $('.nasa-explanation').text("This is a test " + nasaData1);
-  $('.nasa-image').append('<img src="' + nasaData2 + '">');
+  $('.nasa-image').append('<img id="nasa-img" src="' + nasaData2 + '">');
 };
 
 $(document).ready(function() {

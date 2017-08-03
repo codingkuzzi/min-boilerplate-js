@@ -2,6 +2,7 @@
 exports.apiKey = "4e7b6b7a2a3fea22aa1726375e98828c";
 exports.nasaApiKey = "amBGZNec2slSJnOX1oSRanpcuUODiLyYT2tgEONi";
 exports.weatherApiKey = "caa2a9da0c530ba7809ddb248b3c6dcf";
+exports.username = "Anna";
 
 },{}],2:[function(require,module,exports){
 //BUSINESS logic
@@ -76,7 +77,7 @@ module.exports = Weather;
 },{"../.env":1}],6:[function(require,module,exports){
 //Include our Back end logic
 var Currency = require('./../js/currency.js');
-var secretData = require('./../.env').apiKey;
+var secretData = require('./../.env');
 var BarChart= require('../js/barchart.js');
 
 
@@ -100,7 +101,7 @@ $(document).ready(function() {
   var currencyInfo = new Currency();
   currencyInfo.getRates(passedUIFunction);
 
-  $(".api").text("API key is " + secretData.apiKey + "., username is: " + secretData.username  );
+  $(".api").text("API key is " + secretData.apiKey+ "., username is: " + secretData.username );
 
   var barChart = new BarChart();
   barChart.getCloseRate(showClosingRate);
@@ -112,7 +113,7 @@ var Nasa = require('../js/nasa.js');
 
 var passedNasaFunction = function(nasaData1, nasaData2) {
   $('.nasa-explanation').text("This is a test " + nasaData1);
-  $('.nasa-image').append('<img src="' + nasaData2 + '">');
+  $('.nasa-image').append('<img id="nasa-img" src="' + nasaData2 + '">');
 };
 
 $(document).ready(function() {

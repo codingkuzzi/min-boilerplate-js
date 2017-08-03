@@ -1,6 +1,6 @@
 //Include our Back end logic
 var Currency = require('./../js/currency.js');
-var secretData = require('./../.env').apiKey;
+var secretData = require('./../.env');
 var BarChart= require('../js/barchart.js');
 
 
@@ -24,7 +24,7 @@ $(document).ready(function() {
   var currencyInfo = new Currency();
   currencyInfo.getRates(passedUIFunction);
 
-  $(".api").text("API key is " + secretData.apiKey + "., username is: " + secretData.username  );
+  $(".api").text("API key is " + secretData.apiKey+ "., username is: " + secretData.username );
 
   var barChart = new BarChart();
   barChart.getCloseRate(showClosingRate);
