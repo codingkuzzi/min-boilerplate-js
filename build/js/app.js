@@ -1,6 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 exports.apiKey = "4e7b6b7a2a3fea22aa1726375e98828c";
 exports.nasaApiKey = "amBGZNec2slSJnOX1oSRanpcuUODiLyYT2tgEONi";
+exports.weatherApiKey = "caa2a9da0c530ba7809ddb248b3c6dcf";
 
 },{}],2:[function(require,module,exports){
 //BUSINESS logic
@@ -52,6 +53,27 @@ Nasa.prototype.getImage = function(passedNasaFunction){
 module.exports = Nasa;
 
 },{"./../.env":1}],5:[function(require,module,exports){
+var weatherApiKey = require('../.env').weatherApiKey;
+
+function Weather() {
+
+}
+
+
+
+Weather.prototype.getWeather = function(passedWeatherFunction){
+
+  $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=Seattle&appid=' + weatherApiKey)
+
+    .then(function(apiResponse){
+      console.log(apiResponse);
+      passedWeatherFunction(apiResponse.coord.lon, apiResponse.coord.lat,apiResponse.main.temp );
+    });
+};
+
+module.exports = Weather;
+
+},{"../.env":1}],6:[function(require,module,exports){
 //Include our Back end logic
 var Currency = require('./../js/currency.js');
 var secretData = require('./../.env').apiKey;
@@ -101,4 +123,20 @@ $(document).ready(function() {
 
 });
 
-},{"../js/barchart.js":2,"../js/nasa.js":4,"./../.env":1,"./../js/currency.js":3}]},{},[5]);
+var Weather = require('../js/weather.js');
+
+var passedWeatherFunction = function(weatherData1, weatherData2, weatherData3) {
+  $('.longitude').text("Longitude: " + weatherData1);
+  $('.latitude').text("Latitude: " + weatherData2);
+  $('.weather').text("Temperature: " + weatherData3);
+};
+
+$(document).ready(function() {
+  event.preventDefault();
+  console.log("we got here");
+  var weather = new Weather();
+  weather.getWeather(passedWeatherFunction);
+
+});
+
+},{"../js/barchart.js":2,"../js/nasa.js":4,"../js/weather.js":5,"./../.env":1,"./../js/currency.js":3}]},{},[6]);
