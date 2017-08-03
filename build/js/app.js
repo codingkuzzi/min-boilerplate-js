@@ -1,5 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 exports.apiKey = "4e7b6b7a2a3fea22aa1726375e98828c";
+exports.nasaApiKey = "amBGZNec2slSJnOX1oSRanpcuUODiLyYT2tgEONi";
 
 },{}],2:[function(require,module,exports){
 //BUSINESS logic
@@ -33,9 +34,27 @@ Currency.prototype.getRates = function(passedUIFunction){
 module.exports = Currency;
 
 },{}],4:[function(require,module,exports){
+var nasaKey = require('./../.env').nasaApiKey;
+
+function Nasa(){
+}
+
+Nasa.prototype.getImage = function(passedNasaFunction){
+
+  $.getJSON('https://api.nasa.gov/planetary/apod?api_key=' + nasaKey)
+    .then(function(apiResponse){
+      console.log(apiResponse);
+      passedNasaFunction(apiResponse.explanation, apiResponse.hdurl);
+      //passedNasaFunction(apiResponse.hdurl);
+    });
+};
+
+module.exports = Nasa;
+
+},{"./../.env":1}],5:[function(require,module,exports){
 //Include our Back end logic
 var Currency = require('./../js/currency.js');
-var secretData = require('./../.env');
+var secretData = require('./../.env').apiKey;
 var BarChart= require('../js/barchart.js');
 
 
@@ -65,4 +84,21 @@ $(document).ready(function() {
   barChart.getCloseRate(showClosingRate);
 });
 
-},{"../js/barchart.js":2,"./../.env":1,"./../js/currency.js":3}]},{},[4]);
+// var nasaKey = require('./../.env').nasaApiKey;
+var Nasa = require('../js/nasa.js');
+
+
+var passedNasaFunction = function(nasaData1, nasaData2) {
+  $('.nasa-explanation').text("This is a test " + nasaData1);
+  $('.nasa-image').append('<img src="' + nasaData2 + '">');
+};
+
+$(document).ready(function() {
+  event.preventDefault();
+  console.log("we got here");
+  var nasaInfo = new Nasa();
+  nasaInfo.getImage(passedNasaFunction);
+
+});
+
+},{"../js/barchart.js":2,"../js/nasa.js":4,"./../.env":1,"./../js/currency.js":3}]},{},[5]);

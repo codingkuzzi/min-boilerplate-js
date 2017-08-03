@@ -1,6 +1,6 @@
 //Include our Back end logic
 var Currency = require('./../js/currency.js');
-var secretData = require('./../.env');
+var secretData = require('./../.env').apiKey;
 var BarChart= require('../js/barchart.js');
 
 
