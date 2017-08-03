@@ -1,5 +1,6 @@
 //BUSINESS logic
 var secretData = require('./../.env');
+
 function BarChart(){
 }
 

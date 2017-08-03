@@ -19,3 +19,23 @@ Prerequisites:
 12.  Create .env file in the root/top level of the project.
 13.  Add .env file in the .gitignore file.
 14.  May need to install "Allow-Control-Allow-Origin:" extension to Chrome to have the API key to work.
+
+
+Gulp Serve runs - browserSync (a server)
+1. jsBuild: reloads the page
+2. jsBrowserify - makes Node code work in the browser
+2a. concatInterface: combines all the interface-js files into a single file
+3. jshint - linter that checks code for errors
+4. bower -
+4a. bowerJS - takes the vendor JavaScript and combines all vendor JavaScripts into vendor.min.js
+4b. bowerCSS - takes the vendor CSS and combines all vendor CSS into vendor.css
+5.  Watches for changes in the js folder, bower.json, all html, and .scss, and then runs the corresponding tasks if there are any changes.
+
+
+Gulp Build runs -
+1. clean: deletes the build and tmp folders
+2. jsBrowserify - makes Node code work in the browser
+3. bower -
+3a. bowerJS - takes the vendor JavaScript and combines all vendor JavaScripts into vendor.min.js
+3b. bowerCSS - takes the vendor CSS and combines all vendor CSS into vendor.css
+4. cssBuild - turns scss files and converts them to css

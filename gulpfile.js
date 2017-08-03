@@ -67,9 +67,6 @@ gulp.task('jshint', function(){
     .pipe(jshint.reporter('default'));
 });
 
-// gulp.task('serve', function(){
-//   gulp.watch(['js/*.js'], ['build']);
-// });
 
 // tested ok
 gulp.task('bowerJS', function () {
@@ -89,7 +86,7 @@ gulp.task('bowerCSS', function () {
 // tested ok
 gulp.task('bower', ['bowerJS', 'bowerCSS']);
 
-gulp.task('serve', ['jsBuild'],  function() {
+gulp.task('serve', ['jsBuild', 'cssBuild'],  function() {
   browserSync.init({
     server: {
       baseDir: "./",
